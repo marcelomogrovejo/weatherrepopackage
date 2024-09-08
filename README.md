@@ -13,40 +13,39 @@
 8. [Contribute](#Contribute)
 9. [Meta](#Meta)
 
-# ToDo Repository Package
+# Weather Repository Package
 
 <br />
 <p align="center">
-  <a href="https://github.com/marcelomogrovejo/todo-repo-pkg">
-    <img src="logo-to-do-repo.png" alt="Logo" width="80" height="80">
+  <a href="https://github.com/marcelomogrovejo/weatherrepopackage">
+    <img src="logo-weather-repo.png" alt="Logo" width="80" height="80">
   </a>
   <p align="center">
-    A simple repository package project which is a persistence layer to ToDoMVP and ToDoSwiftUI projects.
+    A simple repository package project which is a persistence layer to WeatherApp project.
   </p>
 </p>
 
 # Description
-<p>ToDoRepository package is a simple swift package which is developed to learn 'Swift Package Manager' and 'Repository Pattern'.<br>
-The project consists of an API Service which exposes methods to fetch, create, delete and edit a task among others. And a data source which can be whatever source of data like UserDefaults or a remote database.</p>
+<p>WeatherRepo package is a simple swift package which is developed to learn 'Swift Package Manager' and 'Repository Pattern'.<br>
+The project consists of an API Service which exposes methods like fetch the weather for a specific location.</p>
 
 # Getting started
 <p>
 1. Make sure you have the Xcode version 14.0 or above installed on your computer.<br>
-2. Download the ToDoMVP and/or ToDoSwiftUI projects files from the repository.<br>
-3. Open the ToDoMVP and/or ToDoSwiftUI projects files in Xcode.<br>
-4. Make sure the TodoRepositoryPackage, PetShopAnimationPackage and Lottie Swift Packages are downloaded successfully.<br>
+2. Download the WeatherApp project files from the repository.<br>
+3. Open the WeatherApp project in Xcode.<br>
+4. Make sure the WeatherRepo Packages is downloaded successfully.<br>
 5. Run the active scheme.<br>
 
-You should see a lottie animation on the screen.<br>
-You should see a main button that takes you to an empty list of tasks.<br>
+You should see a main button that request you to share you location.<br>
 
 # Structure 
 * "DataSource": Procotols, error handling and model files.
 * "DomainLayer": Api service file that exposes the methods to be used by the apps.
 
 # Running the tests
-<p>The ToDoRepository package project can be tested using the built-in framework XCTest.<br>
-To start testing the project, you will need to change to the 'ToDoRepository packageTests' target in your Xcode project, and then just run the tests project.</p>
+<p>The WeatherRepo package project can be tested using the built-in framework XCTest.<br>
+To start testing the project, you will need to change to the 'WeatherRepoPackageTests' target in your Xcode project, and then just run the tests project.</p>
 
 # Deployment
 Keep in mind that deploying an iOS app to the App Store requires having an Apple Developer account.
@@ -59,23 +58,18 @@ This will create a signed IPA file that can be installed on iOS devices.
 5. Once the distribution is complete, you can use the IPA file to install the app on iOS devices
 
 # Dependencies
-[Swift Package Manager (SPM)](https://www.swift.org/documentation/package-manager/) is used as a dependency manager.
-List of dependencies: 
-* [Lottie package](https://lottiefiles.com/) -> Lightweight Lottie animations.
-* [PetShopAnimationPackage](https://gitlab.com/marcelomogrovejo/petshopanimationpackage) -> Our library that serves the Lottie animagion common implementation.
-* [TodoRepositoryPackage](https://github.com/marcelomogrovejo/todo-repo-pkg) -> Our <strong>common</strong> library that serves the persistence layer. 
 
 # Workflow
 
 * Reporting bugs:<br> 
-If you come across any issues while using the ToDoRepository package app, please report them by creating a new issue on the GitHub repository.
+If you come across any issues while using the WeatherRepo package app, please report them by creating a new issue on the GitHub repository.
 
 * Reporting bugs form: <br> 
 ```
 App version: 1.02
 iOS version: 16.1
-Description: When the api receives a complete task request this is not performing any action and the task keeps active.
-Steps to reproduce: On the task list, tap the radio button on the right of the task information, the radio button is filled but the task is still active.
+Description: The api is not getting the appropriate language.
+Steps to reproduce: .
 ```
 
 * Submitting pull requests: <br> 
@@ -90,7 +84,7 @@ If you have any feedback or suggestions for the ToDoRepository package project, 
 
 ## Contribute
 
-We would love you for the contribution to **ToDoRepositoryPackage**, check the ``LICENSE`` file for more info.
+We would love you for the contribution to **WeatherRepoPackage**, check the ``LICENSE`` file for more info.
 
 ## Meta
 

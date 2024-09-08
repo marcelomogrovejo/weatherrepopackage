@@ -12,16 +12,7 @@
     "codeCoverage" : false
   },
   "testTargets" : [
-    {
-      "skippedTests" : [
-        "TodoRepositoryPackageTests"
-      ],
-      "target" : {
-        "containerPath" : "container:",
-        "identifier" : "TodoRepositoryPackageTests",
-        "name" : "TodoRepositoryPackageTests"
-      }
-    }
+
   ],
   "version" : 1
 }

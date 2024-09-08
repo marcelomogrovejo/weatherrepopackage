@@ -1,6 +1,6 @@
 //
 //  RepositoryError.swift
-//  CryptoRepoPackage
+//  WeatherRepoPackage
 //
 //  Created by Marcelo Mogrovejo on 02/12/2023.
 //

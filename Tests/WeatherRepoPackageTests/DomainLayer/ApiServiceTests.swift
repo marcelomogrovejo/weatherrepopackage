@@ -68,9 +68,9 @@ extension ApiServiceTests {
                         tempMin: 284.29,
                         tempMax: 287.77,
                         pressure: 1031,
-                        humidity: 83,
-                        seaLevel: 1031,
-                        grndLevel: 1029)
+                        seaLevel: 83,
+                        grndLevel: 1031,
+                        humidity: 1029)
         let wind = Wind(speed: 0,
                         deg: 0,
                         gust: 0)

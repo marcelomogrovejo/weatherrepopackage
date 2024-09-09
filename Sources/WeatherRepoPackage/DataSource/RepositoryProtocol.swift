@@ -40,5 +40,5 @@ protocol LocationRepositoryProtocol {
     ///
     /// - Returns: location coordinates.
     ///
-    func location() async throws -> T
+    func location() async throws -> T?
 }

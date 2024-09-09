@@ -43,19 +43,20 @@ public class LocalLocationRepository: LocationRepositoryProtocol {
         }
     }
 
-    func location() async throws -> LocationDto {
+    func location() async throws -> LocationDto? {
         let key = "\(key)"
         if let data = UserDefaults.standard.object(forKey: key) as? Data {
             do {
                 let item = try JSONDecoder().decode(LocationDto.self, from: data)
-                return item
+                    return item
             } catch {
                 print("Error: Unable to Decode object (\(error))")
                 throw error
             }
         } else {
-            print("Error: Object not found.")
-            throw RepositoryError.notFound
+            print("Info: Object not found.")
+//            throw RepositoryError.notFound
+            return nil
         }
     }
 

@@ -37,7 +37,7 @@ public protocol ApiServiceProtocol {
     ///
     /// - Returns: latitude and longitude
     ///
-    func getCurrentLocation() async throws -> DomainLocation
+    func getPersistedCurrentLocation() async throws -> DomainLocation?
 }
 
 public struct ApiService {
@@ -99,9 +99,11 @@ extension ApiService: ApiServiceProtocol {
         }
     }
 
-    public func getCurrentLocation() async throws -> DomainLocation {
+    public func getPersistedCurrentLocation() async throws -> DomainLocation? {
         do {
-            let locationDto = try await localRepository.location()
+            guard let locationDto = try await localRepository.location() else {
+                return nil
+            }
             return DomainLocation(latitude: locationDto.latitude,
                                   longitude: locationDto.longitude)
         } catch {

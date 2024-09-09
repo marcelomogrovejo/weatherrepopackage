@@ -52,6 +52,29 @@ final class ApiServiceTests: XCTestCase {
         }
     }
 
+    func testSaveLocation_onSuccess() async {
+        
+    }
+
+    func testSaveLocation_onFailure() async {
+        
+    }
+
+    func testGetLocation_onSuccess() async {
+        
+    }
+
+    func testGetLocation_onFailure() async {
+        
+    }
+
+    func testIsLocation_onSuccess() async {
+        
+    }
+
+    func testIsLocation_onFailure() async {
+        
+    }
 }
 
 extension ApiServiceTests {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class RemoteWeatherRepository: RepositoryProtocol {
+public class RemoteWeatherRepository: WeatherRepositoryProtocol {
 
     typealias T = WeatherDto
 

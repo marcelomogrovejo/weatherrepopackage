@@ -18,19 +18,59 @@ public protocol ApiServiceProtocol {
     /// - throws: An error.
     /// 
     func getCurrentWeather(latitude: Double, longitude: Double) async throws -> DomainWeather
+
+    /// Save the current location.
+    ///
+    /// - Parameters:
+    ///   - latitude: the latitude
+    ///   - longitude: the longitude
+    ///
+    func saveCurrentLocation(latitude: Double, longitude: Double) async throws
+
+    /// Check if there is a currect location already saved.
+    ///
+    /// - Returns: a boolean
+    ///
+    func isCurrentLocationExist() async throws -> Bool
+
+    /// Fetch the location already saved if exist.
+    ///
+    /// - Returns: latitude and longitude
+    ///
+    func getCurrentLocation() async throws -> DomainLocation
 }
 
 public struct ApiService {
 
     public let remoteRepository: RemoteWeatherRepository
+    public let localRepository: LocalLocationRepository
 
-    public init(remoteRepository: RemoteWeatherRepository = RemoteWeatherRepository()) {
+    public init(remoteRepository: RemoteWeatherRepository = RemoteWeatherRepository(),
+                localRepository: LocalLocationRepository = LocalLocationRepository()) {
         self.remoteRepository = remoteRepository
+        self.localRepository = localRepository
     }
 
 }
 
 extension ApiService: ApiServiceProtocol {
+
+    public func saveCurrentLocation(latitude: Double, longitude: Double) async throws {
+        do {
+            let currentLocationDto = LocationDto(latitude: latitude, longitude: longitude)
+            try await localRepository.save(location: currentLocationDto)
+        } catch {
+            throw error
+        }
+    }
+
+    public func isCurrentLocationExist() async throws -> Bool {
+        do {
+            return try await localRepository.isLocated()
+        } catch {
+            return false
+        }
+    }
 
     public func getCurrentWeather(latitude: Double, longitude: Double) async throws -> DomainWeather {
         do {
@@ -54,6 +94,16 @@ extension ApiService: ApiServiceProtocol {
                                  timezone: weatherDto.timezone,
                                  sunrise: weatherDto.sys?.sunrise,
                                  sunset: weatherDto.sys?.sunset)
+        } catch {
+            throw error
+        }
+    }
+
+    public func getCurrentLocation() async throws -> DomainLocation {
+        do {
+            let locationDto = try await localRepository.location()
+            return DomainLocation(latitude: locationDto.latitude,
+                                  longitude: locationDto.longitude)
         } catch {
             throw error
         }

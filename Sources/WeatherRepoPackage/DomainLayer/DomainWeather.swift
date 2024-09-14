@@ -12,6 +12,7 @@ public struct DomainWeather {
     public let longitude: Double
     public let weather: String
     public let desc: String?
+    public let iconName: String?
     public let temperature: Double
     public let minTemperature: Double
     public let maxTemperature: Double
@@ -32,6 +33,7 @@ public struct DomainWeather {
                 longitude: Double,
                 weather: String,
                 desc: String?,
+                iconUrl: String?,
                 temperature: Double,
                 minTemperature: Double,
                 maxTemperature: Double,
@@ -51,6 +53,7 @@ public struct DomainWeather {
         self.longitude = longitude
         self.weather = weather
         self.desc = desc
+        self.iconName = iconUrl
         self.temperature = temperature
         self.minTemperature = minTemperature
         self.maxTemperature = maxTemperature

@@ -105,7 +105,7 @@ struct DailyUnits: Codable {
 // MARK: - Hourly
 struct Hourly: Codable {
     let time: [String]?
-    let weatherCode: [Double]?
+    let weatherCode: [Int]?
     let temperature2M: [Double]?
 
     enum CodingKeys: String, CodingKey {

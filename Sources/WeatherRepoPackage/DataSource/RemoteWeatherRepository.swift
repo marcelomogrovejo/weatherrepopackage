@@ -17,7 +17,7 @@ public class RemoteWeatherRepository: WeatherRepositoryProtocol {
     func weather(latitude: Double, longitude: Double) async throws -> WeatherDto {
         /// URL:    https://api.openweathermap.org/data/2.5/weather?lat=-31.969148090946256&lon=115.81716949880371&appid=d7a633b4d8f13ea358bcd95b64e7b6de&units=metric&lang=en
 
-        guard let url = URL(string: Config.baseUrl + "weather") else {
+        guard let url = URL(string: Config.OpenWeather.baseUrl + "weather") else {
             throw RepositoryError.badURL
         }
         guard var components = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
@@ -26,7 +26,7 @@ public class RemoteWeatherRepository: WeatherRepositoryProtocol {
         let queryItems: [URLQueryItem] = [
           URLQueryItem(name: "lat", value: "\(latitude)"),
           URLQueryItem(name: "lon", value: "\(longitude)"),
-          URLQueryItem(name: "appid", value: Config.ApiKey),
+          URLQueryItem(name: "appid", value: Config.OpenWeather.ApiKey),
           URLQueryItem(name: "units", value: "metric"),
           URLQueryItem(name: "lang", value: "en")
         ]

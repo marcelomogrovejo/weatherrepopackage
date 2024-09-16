@@ -40,14 +40,30 @@ public protocol ApiServiceProtocol {
     func getPersistedCurrentLocation() async throws -> DomainLocation?
 }
 
+public protocol ApiServiceV2Protocol {
+    
+    /// Fetch the weather for a location.
+    ///
+    /// - Parameters:
+    ///   - latitude: the latitude
+    ///   - longitude: the longitude
+    /// - Returns: the weather data for that location.
+    /// - throws: An error.
+    ///
+    func getCurrentWeatherV2(latitude: Double, longitude: Double) async throws -> DomainWeatherV2
+}
+
 public struct ApiService {
 
     public let remoteRepository: RemoteWeatherRepository
+    public let remoteRepoV2: RemoteWeatherV2Repository
     public let localRepository: LocalLocationRepository
 
     public init(remoteRepository: RemoteWeatherRepository = RemoteWeatherRepository(),
-                localRepository: LocalLocationRepository = LocalLocationRepository()) {
+                localRepository: LocalLocationRepository = LocalLocationRepository(),
+                remoteRepoV2: RemoteWeatherV2Repository = RemoteWeatherV2Repository()) {
         self.remoteRepository = remoteRepository
+        self.remoteRepoV2 = remoteRepoV2
         self.localRepository = localRepository
     }
 
@@ -110,6 +126,30 @@ extension ApiService: ApiServiceProtocol {
         } catch {
             throw error
         }
+    }
+
+}
+
+extension ApiService: ApiServiceV2Protocol {
+
+    public func getCurrentWeatherV2(latitude: Double, longitude: Double) async throws -> DomainWeatherV2 {
+        let weatherV2Dto = try await remoteRepoV2.weather(latitude: latitude, longitude: longitude)
+        return DomainWeatherV2(latitude: weatherV2Dto.latitude,
+                               longitude: weatherV2Dto.longitude,
+                               temperature: weatherV2Dto.current?.temperature2M ?? 0,
+                               feelLike: weatherV2Dto.current?.apparentTemperature ?? 0,
+                               humidity: weatherV2Dto.current?.relativeHumidity2M ?? 0,
+                               windSpeed: weatherV2Dto.current?.windSpeed10M ?? 0,
+                               hourlyWeatherTime: weatherV2Dto.hourly?.time ?? [], 
+                               hourlyWeatherCode: weatherV2Dto.hourly?.weatherCode ?? [],
+                               hourlyWeatherTemperature: weatherV2Dto.hourly?.temperature2M ?? [],
+                               weatherCode: weatherV2Dto.current?.weatherCode ?? 0,
+                               isDay: /*weatherV2Dto.current?.isDay == 1 ? true :*/ false,
+                               minTemperature: weatherV2Dto.daily?.temperature2MMin?.first ?? 0,
+                               maxTemperature: weatherV2Dto.daily?.temperature2MMax?.first ?? 0,
+                               sunrise: weatherV2Dto.daily?.sunrise?.first ?? "",
+                               sunset: weatherV2Dto.daily?.sunset?.first ?? "")
+
     }
 
 }
